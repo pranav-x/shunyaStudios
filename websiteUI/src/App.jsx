@@ -14,6 +14,7 @@ export default function App() {
   }, [])
 
   if (loading) return <div style={{padding:16}}>Loading…</div>
+  
   if (err) return <div style={{padding:16, color:'crimson'}}>Error: {err}</div>
 
   return (
