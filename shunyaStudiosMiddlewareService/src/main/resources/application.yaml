@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    # Use cloud URL if provided; otherwise fallback to local Docker
+    url: ${JDBC_URL:jdbc:postgresql://${DB_HOST:127.0.0.1}:${DB_PORT:5432}/${DB_NAME:voters}}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    # driver can be inferred, but keeping it is fine:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none   # in prod consider 'validate'; keep 'none' if you manage schema
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+
+server:
+  port: ${PORT:8080}   # many PaaS set PORT automatically
+  address: 0.0.0.0
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

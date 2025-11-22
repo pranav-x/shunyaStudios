@@ -8,6 +8,6 @@ public class HelloController {
 
     @GetMapping("/api/hello")
     public String hello() {
-        return "Hi from Shunya Studios Middleware Service 🚀";
+        return "Hii from Shunya Studios Middleware Service 🚀";
     }
 }
