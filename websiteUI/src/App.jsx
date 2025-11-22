@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
-const API_BASE =
-  import.meta.env.VITE_API_URL || 'http://localhost:8080' // fallback for local dev
+// Backend API URL (Render sets VITE_API_URL)
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8080'
 
 export default function App() {
-  const [data, setData] = useState<any[]>([])
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
-  const [err, setErr] = useState<string | null>(null)
+  const [err, setErr] = useState(null)
 
   useEffect(() => {
     fetch(`${API_BASE}/api/v1/voters`, {
@@ -27,6 +27,7 @@ export default function App() {
   return (
     <div style={{ padding: 24 }}>
       <h1>Voter Roll</h1>
+
       <table style={{ borderCollapse: 'collapse', width: '100%', maxWidth: 960 }}>
         <thead>
           <tr>
@@ -40,8 +41,9 @@ export default function App() {
             ))}
           </tr>
         </thead>
+
         <tbody>
-          {data.map((v: any) => (
+          {data.map(v => (
             <tr key={v.serialNo}>
               <td style={{ padding: 8, borderBottom: '1px solid #f0f0f0' }}>{v.serialNo}</td>
               <td style={{ padding: 8, borderBottom: '1px solid #f0f0f0' }}>{v.houseNo}</td>
